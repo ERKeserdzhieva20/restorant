@@ -9,17 +9,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         List<Order> order = new ArrayList<>();
-        Runnable  kitchen = new Kitchen();
-        Waiter waiters = new Waiter();
-
-        boolean isOpen = true;
+        int counter = 0;
 
         order.add(new Order(1,"Chicken soup"));
         order.add(new Order(2,"Spaghetti with Ketchup"));
         order.add(new Order(5,"Fruit salad"));
 
-        while (isOpen = true){
-            System.out.println("hgerg");
+
+        for (Order orders : order) {
+            Runnable waiters = new Waiter(order.get(counter));
+            counter++;
+            waiters.run();
         }
+        //while (order != null){
+        //      System.out.println("hgerg");
+        //}
     }
 }

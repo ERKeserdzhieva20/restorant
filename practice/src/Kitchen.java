@@ -1,4 +1,10 @@
-public class Kitchen {
+public class Kitchen extends Thread{
+    Order order;
+
+    public Kitchen(Order order) {
+        this.order = order;
+    }
+
     Order prepareOrder(Order order) {
         System.out.println(order.toString() + "(/s) is/are being prepared");
         order.isCooked();
@@ -6,9 +12,8 @@ public class Kitchen {
         return order;
     }
 
-    @Override
-
-    public Kitchen run(Order order) {
-       return prepareOrder(order);
+    //@Override
+    public void run() {
+        prepareOrder(order);
     }
 }
