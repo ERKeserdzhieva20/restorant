@@ -13,7 +13,7 @@ public class Kitchen extends Thread{
     }
 
     //@Override
-    public void run() {
+    public synchronized  void run() {
         prepareOrder(order);
     }
 }

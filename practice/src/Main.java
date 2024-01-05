@@ -21,8 +21,5 @@ public class Main {
             counter++;
             waiters.run();
         }
-        //while (order != null){
-        //      System.out.println("hgerg");
-        //}
     }
 }

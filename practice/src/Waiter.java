@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 public class Waiter extends Thread{
     ExecutorService executor = Executors.newFixedThreadPool(2);
     Order order;
+    boolean FinishingOrder;
 
     public Waiter(Order order) {
         this.order = order;
@@ -17,21 +18,22 @@ public class Waiter extends Thread{
     }
     void serveOrder(Order order) {
         System.out.println(order.toString() + "(/s) is/are being served");
-        //System.out.println(order.isServed() +" " + order.isTaken());
         order.setServed(true);
-        System.out.println(order.toString() + "(/s) is/are id served. Enjoy");
+        System.out.println(order.toString() + "(/s) is/are id served. Enjoy!!!");
     }
 
     //@Override
 
-    public void run() {
+    public synchronized void run() {
+            takeOrder(order);
+             Runnable kitchen = new Kitchen(order);
+            try {
+                this.sleep(1000);
+                kitchen.run();
+            }
+            catch(Exception x){
 
-        takeOrder(order);
-        Kitchen kitchen = new Kitchen(order);
-        kitchen.run();
-        //wait();
-        executor.execute(kitchen);
-        serveOrder(order);
-
+            }
+            serveOrder(order);
     }
 }
